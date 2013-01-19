@@ -54,10 +54,11 @@ class Allowed:
 				emptyjson[key]=value
 			emptyjson["oauth_token"]=access_token.key
 			emptyjson["oauth_secret"]=access_token.secret
-			emptyjson["files"]={}
+			emptyjson["files"]=[]
 			oid = collection.insert(emptyjson)
 
 		#3: get the metadata.
+		newfiles=[]
 		counter = 0
 		folder_metadata = allowed_client.metadata('/')
 		for i in folder_metadata['contents']:
@@ -77,26 +78,14 @@ class Allowed:
 			out.close()
 
 			#5: save them to mongo
-			newfiles = []
 			prevfiles = collection.find({"uid":userdata['uid']},{"files":1})
-
-			indexofdot  = filename.index('.')
 			newkey = str(userdata['uid'])+str(counter)
-
-			for i in prevfiles:
-				if i.get('files') == {}:
-					newfiles.append({"uuid":newkey, "dir":filedir})
-				else:
-					for j in i['files']:
-						#newfiles.append(j)
-						print j
-					newfiles.append({"uuid":newkey,"dir":  filedir})
+			newfiles.append({"uuid":newkey,"dir": filedir})
 			counter +=1
-			collection.update({'uid':userdata['uid']},{"$set":{"files":newfiles}})
+		
+		collection.update({'uid':userdata['uid']},{"$set":{"files":newfiles}})
 
-		return newfiles
-
-		#raise web.seeother('http://simplyi.me:3030/authenticated?ObjectID=' + str(oid))
+		raise web.seeother('http://simplyi.me:3030/authenticated?ObjectID=' + str(oid))
 
 
 if __name__ == "__main__":

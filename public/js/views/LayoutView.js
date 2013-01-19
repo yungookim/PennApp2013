@@ -14,13 +14,15 @@ window.LayoutView = Backbone.View.extend({
         console.log("TemplateStyle1");
     	var self = this;
     	self.template = window.Templates.TemplateStyle1;
+	var m = this.model.toJSON();
+	console.log(m);
 
     	if (self.template) {
     		$(this.el).html(Mustache.to_html(self.template, data));
     	} else {
 		window.loadTemplate('TemplateStyle1', function(temp){
             self.template = window.Templates.TemplateStyle1 = temp;
-            $(self.el).html(Mustache.to_html(self.template, data));
+            $(self.el).html(Mustache.to_html(self.template, m));
             console.log("template loaded");
 
             var $container = $('#container');  

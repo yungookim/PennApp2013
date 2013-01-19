@@ -11,7 +11,7 @@ window.UserModel = Backbone.Model.extend({
 	fetch : function(id, next){
 		var self = this;
 		$.get('/model/getAll', { id : id }, function(ret){
-			self.set('id' : id);
+			self.set('id' , id);
 			self.set('country', ret.country);
 			self.set('display_name', ret.display_name);
 			self.set('email', ret.email);
