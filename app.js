@@ -54,10 +54,6 @@ app.configure('production', function(){
 });
 
 app.get('/', control.index);
-
-app.get('/a', function(req, res){res.send("foo");});
-
 app.get('/authenticated', control.authenticated);
-
 
 app.listen(config.port);

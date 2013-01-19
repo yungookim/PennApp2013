@@ -1,5 +1,3 @@
-
-
 $(function(){
 	window.Templates = {};
 
@@ -23,7 +21,7 @@ var AppRouter = Backbone.Router.extend({
 
 	template : function() {
 		var self = this;
-		(new TemplateStyle1()).render();
+		(new LayoutView()).render();
 	},
 
 	sandbox : function() {
