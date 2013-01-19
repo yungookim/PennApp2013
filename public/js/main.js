@@ -14,11 +14,10 @@ var AppRouter = Backbone.Router.extend({
         "" : "landing"
 	},
 
-	render : function(view){
-		this.$mainDiv.html(view.render());
-	},
+	el : $("#main"),
 
 	landing : function(){
+		var self = this;
 		(new LandingView()).render();
 	}
 });

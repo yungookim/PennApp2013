@@ -1,9 +1,12 @@
 window.LandingView = Backbone.View.extend({
 
-		$mainDiv : $("#main"),
+		el : $("#main"),
+
+		events : {
+			"click #dropbox_login" : "login"
+		},
 
     initialize: function() {
-
     },
 
     render: function(eventName) {
@@ -11,12 +14,16 @@ window.LandingView = Backbone.View.extend({
     	self.template = window.Templates.LandingView;
 
     	if (self.template){
-    		$mainDiv.html(self.template);
+    		$(this.el).html(self.template);
     	} else {
     		window.loadTemplate('LandingView', function(temp){
     			self.template = window.Templates.LandingView = temp;
-    			self.$mainDiv.html(self.template);
+    			$(self.el).html(self.template);
     		});
     	}
+    },
+
+    login : function(){
+    	window.location = "http://simplyi.me:3000";
     }
 });
