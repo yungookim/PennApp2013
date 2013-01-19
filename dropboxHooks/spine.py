@@ -12,8 +12,6 @@ urls = (
 	'/allowed', 'Allowed'
 )
 
-oid = ''
-
 sess = session.DropboxSession(app_key, app_secret, access_type)
 request_token = sess.obtain_request_token()
 
@@ -44,13 +42,14 @@ class Index:
 			for key,value in userdata.items():
 				# if the value is the same, leave it
 				if value == userdata[key]:
-					print "same shit", value, userdata[key]
-				else:# if the value isn't the same, then update
-					print "fuck its different, update this shit"
-					collection.update({key:value}, {key:userdata[key]})			
-			# if not, then well.			
-
-			#raise web.seeother('http://simplyi.me/allowed')
+					print "same", value, userdata[key]
+				else: # if the value isn't the same, then update
+					print "update"
+					collection.update({key:value}, {key:userdata[key]})
+			
+			oid = selectall["ObjectId"]			
+	
+			raise web.seeother('http://simplyi.me/allowed?ObjectID=' + str(oid))
 
 
 class Allowed:
@@ -66,9 +65,10 @@ class Allowed:
 		collection = db.user
 
                 oid = collection.insert(userdata)
-		print oid
+		
+		raise web.seeother('http://simpli.me:3000')
 		#raise web.seeother('http://simplyi.me/allowed?ObjectId=' + str(oid))
-		raise web.seeother('/')
+		
 
 if __name__ == "__main__":
 	app = web.application(urls, globals())

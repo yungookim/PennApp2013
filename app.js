@@ -2,9 +2,15 @@ var express = require('express')
   , app = express()
   , config = require('./config')
   , model = require("./model")
-  , control = require("./control");
+  , control = require("./control")
+  , sass = require("node-sass");
 
 app.configure(function(){
+	sass.middleware({
+      		src: __dirname
+		, dest: __dirname + '/public'
+		, debug: true
+	}),
  	app.use(express.static(__dirname + '/public'));	
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
