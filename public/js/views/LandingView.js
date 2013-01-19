@@ -1,10 +1,10 @@
 window.LandingView = Backbone.View.extend({
 
-		el : $("#main"),
+	el : $("#main"),
 
-		events : {
-			"click #dropbox_login" : "login"
-		},
+	events : {
+		"click #dropbox_login" : "login"
+	},
 
     initialize: function() {
     },
