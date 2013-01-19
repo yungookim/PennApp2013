@@ -1,5 +1,9 @@
 window.LayoutView = Backbone.View.extend({
 
+    // this.model is encapsulates json data
+    // this.model.toJSON()
+    // this.model.fetch(callback)
+
 	el : $("#main"),
 	
 	initialize: function() {
@@ -18,11 +22,10 @@ window.LayoutView = Backbone.View.extend({
             self.template = window.Templates.TemplateStyle1 = temp;
             $(self.el).html(Mustache.to_html(self.template, data));
             console.log("template loaded");
-                    var $container = $('#container');  
 
+            var $container = $('#container');  
             $container.imagesLoaded( function() {
                 console.log("container being masonried")
-                console.log($container);
                 $container.masonry({
                     itemSelector: '.img',
                 });         
