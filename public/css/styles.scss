@@ -1,0 +1,86 @@
+$color-major: blue;
+$color-dominant: red;
+$color-minor: yellow;
+$color-diminished: lime;
+$color-background: whitesmoke;
+$color-shadow: black;
+$round-angle: 2px;
+
+
+/*this is needed because vendor gradients have different angles of origin and directions from the unprefixed standard*/
+$angle-offset: 90deg;
+
+/*important! include this to avoid user from highlighting css graphic modules by mistake*/
+@mixin user-unselectable{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+@mixin border-radius($val){
+  -webkit-border-radius: $val;
+  -moz-border-radius: $val;
+  -ms-border-radius: $val;
+  -o-border-radius: $val;
+  border-radius: $val;
+}
+
+@mixin box-shadow($val){
+  -webkit-box-shadow: $val;
+  -moz-box-shadow: $val;
+  -ms-box-shadow: $val;
+  -o-box-shadow: $val;
+  box-shadow: $val;
+}
+
+@mixin transform-rotate($val){
+  -webkit-transform: rotate($val);
+  -moz-transform: rotate($val);
+  -ms-transform: rotate($val);
+  -o-transform: rotate($val);
+  transform: rotate($val);
+}
+
+
+
+@mixin background-gradient-linear($refcolor){
+  $start-color: $refcolor + #444444;
+  $end-color: $refcolor - #444444;
+  background: -webkit-gradient(linear, left top, left bottom, from($start-color), to($end-color));
+  background: -webkit-linear-gradient(top, $start-color, $end-color);
+  background: -moz-linear-gradient(top, $start-color, $end-color);
+  background: -ms-linear-gradient(top, $start-color, $end-color);
+  background: -o-linear-gradient(top, $start-color, $end-color); 
+}
+
+
+@mixin bg-radial-gradient($position, $shape, $refcolor){
+  $color-start: $refcolor + #444444;
+  $color-stop: $refcolor - #444444;
+  background-image:-webkit-radial-gradient($position, $shape, $color-start, $color-stop);
+  background-image:-moz-radial-gradient($position, $shape, $color-start, $color-stop);
+  background-image:-ms-radial-gradient($position, $shape, $color-start, $color-stop);
+  background-image:-o-radial-gradient($position, $shape, $color-start, $color-stop);
+  background-image:radial-gradient($position, $shape, $color-start, $color-stop);
+}
+
+@mixin box-button ($refcolor){
+  text-align: center;
+  font-weight: 900;
+  text-shadow: $refcolor + #888888 0 1px 0;
+  color: $refcolor - #888888;
+  border: 1px solid ($refcolor - #888888);
+  -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+  -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+  
+  &:hover{
+    color: $refcolor + #eeeeee;
+    text-shadow: $refcolor - #888888 0 1px 0;
+  }
+}
+
+//START CODING HERE!!!
+.test{
+  @include background-gradient-linear($color-minor);
+}

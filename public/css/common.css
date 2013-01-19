@@ -2,6 +2,7 @@ body {
 	background: url(../img/landing.jpg) no-repeat center center fixed; 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
+	-ms-background-size
 	-o-background-size: cover;
 	background-size: cover;
 }
