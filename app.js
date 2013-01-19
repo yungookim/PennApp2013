@@ -13,7 +13,7 @@ app.configure(function(){
  	app.use(express.static(__dirname + '/public'));	
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
-	app.use(app.router);
+	// app.use(app.router);
 	app.use(express.logger());
 	app.use(express.compress());
 	app.use(function(err, req, res, next){
@@ -47,6 +47,9 @@ app.configure(function(){
 
 app.get('/', control.index);
 
+app.get('/a', function(req, res){res.send("foo");});
+
 app.get('/authenticated', control.authenticated);
+
 
 app.listen(config.port);

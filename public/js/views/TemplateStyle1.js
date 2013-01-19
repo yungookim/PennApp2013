@@ -6,6 +6,7 @@ window.TemplateStyle1 = Backbone.View.extend({
     },
 
     render: function(eventName) {
+        console.log("asdfasdf");
     	var self = this;
     	self.template = window.Templates.TemplateStyle1;
 

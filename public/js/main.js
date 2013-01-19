@@ -5,24 +5,27 @@ $(function(){
 
 	window.app = new AppRouter();
 	Backbone.history.start();
-	
 })
 
 var AppRouter = Backbone.Router.extend({
 
 	routes : {
-        "" : "landing",
-        "template1" : "template"
+    "" : "landing",
+    "a" : "b",
+    "template1" : "template"
 	},
-
-	el : $("#main"),
-
+	
 	landing : function(){
 		var self = this;
 		(new LandingView()).render();
 	},
 
+	b : function(){
+		console.log("test");
+	},
+
 	template : function() {
+		console.log("asdfasdf");
 		var self = this;
 		(new TemplateStyle1()).render();
 	}
