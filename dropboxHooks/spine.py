@@ -49,9 +49,16 @@ class Allowed:
 			oid = selectall["_id"]
 		except: #if not there, then add new user info
 			print "add new", userdata['email']
-			oid = collection.insert(userdata)
+			emptyjson = {}
+			for key,value in userdata.items():
+				emptyjson[key]=value
+			emptyjson["oauth_token"]=access_token.key
+			emptyjson["oauth_secret"]=access_token.secret
+			emptyjson["files"]={}
+			oid = collection.insert(emptyjson)
 
 		#3: get the metadata.
+		counter = 0
 		folder_metadata = allowed_client.metadata('/')
 		for i in folder_metadata['contents']:
 		
@@ -59,25 +66,34 @@ class Allowed:
 			filename = i['path']
 			f, metadata = allowed_client.get_file_and_metadata(filename)
 
-			### we will save the files under root\data\
+			### we will save the files under root\data\UUID\files
+			# if not, we create and add.
 			directory = '/data/' + str(userdata['uid'])
-
 			if not os.path.exists(directory):
 				os.makedirs(directory)
-
-			out = open(directory+"/"+filename[1:],'w')
+			filedir = directory+"/"+filename[1:]
+			out = open(filedir,'w')
 			out.write(f.read())
 			out.close()
 
-		return	directory
-
-			
-
 			#5: save them to mongo
-			#collection = db.files
-			#fileoid = collection.insert({str(oid):out})
-			#print fileoid
-			#out.close()
+			newfiles = []
+			prevfiles = collection.find({"uid":userdata['uid']},{"files":1})
+
+			indexofdot  = filename.index('.')
+			newkey = str(userdata['uid'])+str(counter)
+
+			for i in prevfiles:
+				if i.get('files') == {}:
+					newfiles.append({"uuid":newkey, "dir":filedir})
+				else:
+					for j in i['files']:
+						newfiles.append(j)
+					newfiles.append({"uuid":newkey,"dir":  filedir})
+			counter +=1
+			collection.update({'uid':userdata['uid']},{"$set":{"files":newfiles}})
+
+		return newfiles
 
 		#raise web.seeother('http://simplyi.me:3030/authenticated?ObjectID=' + str(oid))
 

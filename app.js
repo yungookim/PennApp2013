@@ -13,7 +13,7 @@ app.configure(function(){
  	app.use(express.static(__dirname + '/public'));	
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
-	// app.use(app.router);
+	app.use(app.router);
 	app.use(express.logger());
 	app.use(express.compress());
 	app.use(function(err, req, res, next){
@@ -53,7 +53,7 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', control.index);
 app.get('/authenticated', control.authenticated);
+app.get('/model/getAll', model.getAll);
 
 app.listen(config.port);

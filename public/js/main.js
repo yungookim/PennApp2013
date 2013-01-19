@@ -1,6 +1,8 @@
+"use strict";
 $(function(){
 	window.Templates = {};
-
+	
+	window.userModel;
 	window.app = new AppRouter;
 	Backbone.history.start();
 })
@@ -9,19 +11,23 @@ var AppRouter = Backbone.Router.extend({
 
 	routes : {
         "" : "landing",
-        "template1" : "template",
+        "layout/:id" : "layout",
         "sandbox" : "sandbox",
         "*actions": 'defaultAction'
 	},
 
 	landing : function(){
-		console.log("asdf");
 		(new LandingView()).render();
 	},
 
-	template : function() {
+	layout : function(id) {
 		var self = this;
-		(new LayoutView()).render();
+		if (!window.userModel){
+			window.userModel = new UserModel();
+			window.userModel.fetch(id, function(){
+				(new LayoutView({model : window.userModel})).render();
+			});
+		}
 	},
 
 	sandbox : function() {
