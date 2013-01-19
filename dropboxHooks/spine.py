@@ -27,10 +27,10 @@ class Index:
 			url = sess.build_authorize_url(request_token, callback)
 			raise web.seeother(url) # if it isn't linked yet, then redirect to authentication page
 		else:
-			# access_token=sess.obtain_access_token(request_token)
-			allowed_slient = client.DropboxClient(sess)
+			access_token=sess.obtain_access_token(request_token)
+			allowed_client = client.DropboxClient(sess)
 			# dropbox account data
-			userdata = allowed_slient.account_info()
+			userdata = allowed_client.account_info()
 			uid = userdata['uid']
 				
 			# mongo preset
@@ -67,11 +67,23 @@ class Allowed:
                 db = connection.simplyime
 		collection = db.user
 
-                oid = collection.insert(userdata)
+		#check mongo, if it is already there;
+		try:
+			selectall = collection.find_one({"uid": userdata['uid']})
+			# then we update,
+			for key,value in userdata.items():
+				if not(value == userdata[key]):
+					print "update"
+					collection.update({key:value}, {key:userdata[key]})
+			oid = selectall["_id"]
+
+		except: # not there, then add new
+			print "add new"
+			oid = collection.insert(userdata)
 			
 		# see how the directory structure looks like, i.e. what's in there?		
-		folder_metadata = allowed_client.metadata('/')
-		print "metadata:", folder_metadata
+		#folder_metadata = allowed_client.metadata('/')
+		#print "metadata:", folder_metadata
 		
 		"""
 		# what are the files?
@@ -85,7 +97,7 @@ class Allowed:
 
 		"""
 
-		raise web.seeother('http://simplyi.me:3030/authenticated?ObjectId=' + str(oid))
+		raise web.seeother('http://simplyi.me:3030/authenticated?ObjectID=' + str(oid))
 		
 
 if __name__ == "__main__":

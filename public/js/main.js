@@ -1,7 +1,6 @@
 "use strict";
 
 $(function(){
-
 	var templateArray = ['LandingView'];
 	window.Templates = {};
 
@@ -12,8 +11,6 @@ $(function(){
       window.Templates[name] = template;
   	}, 'text');
 	});
-	
-	console.log(window.Templates);
 
 	window.app = new AppRouter();
 	Backbone.history.start();
