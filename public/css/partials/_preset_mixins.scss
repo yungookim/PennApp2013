@@ -1,0 +1,53 @@
+/*this is needed because vendor gradients have different angles of origin and directions from the unprefixed standard*/
+$angle-offset: 90deg;
+
+/*important! include this to avoid user from highlighting css graphic modules by mistake*/
+@mixin user-unselectable{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+@mixin border-radius($val){
+  -webkit-border-radius: $val;
+  -khtml-border-radius: $val;
+  -moz-border-radius: $val;
+  -ms-border-radius: $val;
+  -o-border-radius: $val;
+  border-radius: $val;
+}
+
+@mixin box-shadow($val){
+  -webkit-box-shadow: $val;
+  -khtml-box-shadow: $val;
+  -moz-box-shadow: $val;
+  -ms-box-shadow: $val;
+  -o-box-shadow: $val;
+  box-shadow: $val;
+}
+
+@mixin bg-linear-gradient($angle, $color-start, $color-stop){
+  background-image:-webkit-linear-gradient($angle-offset - $angle, $color-start, $color-stop);
+  background-image:-khtml-linear-gradient($angle-offset - $angle, $color-start, $color-stop);
+  background-image:-moz-linear-gradient($angle-offset - $angle, $color-start, $color-stop);
+  background-image:-ms-linear-gradient($angle-offset - $angle, $color-start, $color-stop);
+  background-image:-o-linear-gradient($angle-offset - $angle, $color-start, $color-stop);
+  background-image:linear-gradient($angle, $color-start, $color-stop);
+}
+
+@mixin bg-radial-gradient($position, $shape, $color-start, $color-stop){
+  background-image:-webkit-radial-gradient($position, $shape, $color-start, $color-stop);
+  background-image:-khtml-radial-gradient($position, $shape, $color-start, $color-stop);
+  background-image:-moz-radial-gradient($position, $shape, $color-start, $color-stop);
+  background-image:-ms-radial-gradient($position, $shape, $color-start, $color-stop);
+  background-image:-o-radial-gradient($position, $shape, $color-start, $color-stop);
+  background-image:radial-gradient($position, $shape, $color-start, $color-stop);
+}
+
+@mixin transform-rotate($val){
+  -webkit-transform: rotate($val);
+  -moz-transform: rotate($val);
+  -ms-transform: rotate($val);
+  -o-transform: rotate($val);
+  transform: rotate($val);
+}

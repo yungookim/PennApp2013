@@ -1,0 +1,11 @@
+/*presets of colors*/
+$light-gray:#CCCCCC; /*rgb(204, 204, 204)*/
+$gray:#666666; /*rgb(102, 102, 102)*/
+$orange:#FF6800; /*rgb(255, 104, 0)*/
+
+/*presets of gradient color stops
+it is necessary to give rgb sepcifications to the gradient fxs */
+$orange-rgb-start: rgb(255, 75, 0); /* #FF4B00 */
+$orange-rgb-stop: rgb(255, 125, 0); /* #FF7D00 */
+$gray-rgb-start: rgb(223, 223, 223); /* #DFDFDF */
+$gray-rgb-stop: rgb(255, 255, 255); /* #FFFFF */
