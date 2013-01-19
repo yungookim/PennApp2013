@@ -1,11 +1,7 @@
-$('#dropbox_login').bind("click", function(e) {
-	e.preventDefault();
-	$.post('/authenticate', function(data) {
-		if (data.err) {
-			//if Error
-			console.log(data);
-			return;
-		}
-		window.location = data;
-	})
+$(function(){
+	$('#dropbox_login').bind("click", function(e) {
+		e.preventDefault();
+		window.location = "http://simplyi.me:3000";
+	});
 });
+
