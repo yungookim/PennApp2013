@@ -1,3 +1,5 @@
+"use strict";
+
 var path = require('path')
   , fs = require('fs')
   , express = require('express')
@@ -24,14 +26,16 @@ app.configure(function(){
 				next(req, res);
 				return;
 			} else {
-				var scssPath = __dirname + '/public' + path.dirname(req.path) + '/' +  path.basename(req.path, '.css') + '.scss';
+				var scssPath = __dirname + '/public' 
+											+ path.dirname(req.path) 
+											+ '/' +  path.basename(req.path, '.css') 
+											+ '.scss';
 				var scss = fs.readFileSync(scssPath, 'utf8');
 				var css = sass.render(scss, function(err, css){
 					if (err){
 						res.send({ error : err });
 						return;
 					}
-					console.log(css);
 					res.setHeader('Content-Type', 'text/css');
 					res.send(css);
 					return;
@@ -42,8 +46,7 @@ app.configure(function(){
 });
 
 app.get('/', control.index);
-app.get('/allowed', control.allowed);
 
-//app.get('/model', model);
+app.get('/authenticated', control.authenticated);
 
 app.listen(config.port);

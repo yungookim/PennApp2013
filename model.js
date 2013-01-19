@@ -1,7 +1,5 @@
 /** Model stuff**/
 
-
-module.exports = function(){
-
-
+exports.allowed = function(req, res){
+	res.send(req.query);
 }

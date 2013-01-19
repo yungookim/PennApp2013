@@ -52,7 +52,7 @@ class Index:
 			
 			oid = selectall["_id"]
 	
-			raise web.seeother('http://simplyi.me/allowed?ObjectID=' + str(oid))
+			raise web.seeother('http://simplyi.me:3030/authenticated?ObjectID=' + str(oid))
 			
 
 class Allowed:
@@ -85,8 +85,7 @@ class Allowed:
 
 		"""
 
-		raise web.seeother('http://simplyi.me:3000')
-		#raise web.seeother('http://simplyi.me/allowed?ObjectId=' + str(oid))
+		raise web.seeother('http://simplyi.me:3030/authenticated?ObjectId=' + str(oid))
 		
 
 if __name__ == "__main__":
