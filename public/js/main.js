@@ -11,7 +11,8 @@ $(function(){
 var AppRouter = Backbone.Router.extend({
 
 	routes : {
-        "" : "landing"
+        "" : "landing",
+        "template1" : "template"
 	},
 
 	el : $("#main"),
@@ -19,6 +20,11 @@ var AppRouter = Backbone.Router.extend({
 	landing : function(){
 		var self = this;
 		(new LandingView()).render();
+	},
+
+	template : function() {
+		var self = this;
+		(new TemplateStyle1()).render();
 	}
 });
 
