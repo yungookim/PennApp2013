@@ -86,10 +86,10 @@ class Allowed:
 			for i in prevfiles:
 				if i.get('files') == {}:
 					newfiles.append({"uuid":newkey, "dir":filedir})
-				else:
-					for j in i['files']:
-						newfiles.append(j)
-					newfiles.append({"uuid":newkey,"dir":  filedir})
+				#else:
+					#for j in i['files']:
+					#	newfiles.append(j)
+					#newfiles.append({"uuid":newkey,"dir":  filedir})
 			counter +=1
 			collection.update({'uid':userdata['uid']},{"$set":{"files":newfiles}})
 
