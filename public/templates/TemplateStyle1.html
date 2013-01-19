@@ -1,0 +1,39 @@
+			<div id="inner">
+				<div class="page-header">
+					<h1>{{title}} <small>by {{author}}</small></h1>
+				</div>
+				<div id="container">
+					{{#media}}
+						{{#img}}
+							<div class="img col2"><img src="{{src}}"/></div>
+						{{/img}}
+						{{#audio}}
+							<div class="img col2">
+								<img src="{{imgSrc}}"/>
+								<p id="songTitle"><b>Your playing: {{song}}</b></p>
+								<audio controls>
+									<source src="{{src}}" type="{{type}}">
+									YOUR BROWSER DOES NOT SUPPORT AUDIO!!
+								</audio>
+							</div>
+						{{/audio}}
+						{{#video}}
+							<div class="img col2">
+								<video controls width="400">
+  									<source src="{{src}}" type="{{type}}">
+  								</video>
+  								<p id="songTitle"><b>{{name}}</b></p>
+							</div>
+						{{/video}} 
+						{{#text}}
+							<div class="img col2">
+								<p><b>{{titleText}}</b></p>
+								<p>{{message}}</p>
+							</div>
+						{{/text}}
+					{{/media}}
+				</div>	
+				<div id="footer" class="well well-small">
+					<p><b>{{about}}</b> <br>{{aboutMsg}}</p> 
+				</div>
+			</div>
