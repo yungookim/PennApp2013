@@ -11,14 +11,22 @@ window.LayoutView = Backbone.View.extend({
     	var self = this;
     	self.template = window.Templates.TemplateStyle1;
 
-    	if (self.template){
+    	if (self.template) {
     		$(this.el).html(Mustache.to_html(self.template, data));
     	} else {
 		window.loadTemplate('TemplateStyle1', function(temp){
     			self.template = window.Templates.TemplateStyle1 = temp;
-                	$(self.el).html(Mustache.render(self.template, data));
-		});
+                	$(self.el).html(Mustache.to_html(self.template, data));
+		  });
     	}
+
+        var $container = $('#container');   
+        $container.imagesLoaded( function() {
+            $container.masonry({
+                itemSelector: '.img',
+                columnWidth : 240
+            });         
+        });
     }
 });
 
