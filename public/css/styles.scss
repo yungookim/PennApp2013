@@ -4,7 +4,7 @@ $color-minor: yellow;
 $color-diminished: lime;
 $color-background: whitesmoke;
 $color-shadow: black;
-$round-angle: 2px;
+$button-angle: 0.125em;
 
 
 /*this is needed because vendor gradients have different angles of origin and directions from the unprefixed standard*/
@@ -80,7 +80,6 @@ $angle-offset: 90deg;
   }
 }
 
-//START CODING HERE!!!
-.test{
-  @include background-gradient-linear($color-dominant);
+button{
+  @include box-button
 }
