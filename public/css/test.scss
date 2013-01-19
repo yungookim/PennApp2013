@@ -1,0 +1,10 @@
+$color-a: red;
+$color-b: blue;
+$color-h: white;
+$color-s: darkGray;
+
+.test{
+	color: $color-a;
+	background: $color-b;
+	border: 1px solid $color-s;
+}

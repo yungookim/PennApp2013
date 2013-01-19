@@ -1,0 +1,10 @@
+//body{font-family: helvetica, serif;}
+@import "preset_value.scss"
+@import "preset_mixin.scss"
+@import "preset_graphics.scss"
+
+.test{
+  width: 100px;
+  height: 100px;
+  @include background-gradient-linear($color-minor);
+}
