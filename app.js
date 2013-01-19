@@ -1,6 +1,6 @@
 var express = require('express')
   , app = express()
-  , scss = require("scss")
+  , config = require('./config')
   , model = require("./model")
   , control = require("./control");
 
@@ -22,4 +22,4 @@ app.get('/allowed', control.allowed);
 
 //app.get('/model', model);
 
-app.listen(80);
+app.listen(config.port);

@@ -26,7 +26,7 @@ class Index:
 			url = sess.build_authorize_url(request_token, callback)
 			raise web.seeother(url)
 		else:
-			access_token = sess.obtain_access_token(request_token)
+			#access_token = sess.obtain_access_token(request_token)
 			allowed_slient = client.DropboxClient(sess)
 			# dropbox account data
 			userdata = allowed_slient.account_info()
@@ -39,12 +39,15 @@ class Index:
 
 			# check mongo if there's anything already exists,
 			# if so, then we update.
-			print uid
-			selectall =collection.find_one({"uid": uid})	
+			selectall = collection.find_one({"uid": uid})	
 			
-			for key,value in selectall.items():
-				print key,value			
-
+			for key,value in userdata.items():
+				# if the value is the same, leave it
+				if value == userdata[key]:
+					print "same shit", value, userdata[key]
+				else:# if the value isn't the same, then update
+					print "fuck its different, update this shit"
+					collection.update({key:value}, {key:userdata[key]})			
 			# if not, then well.			
 
 			#raise web.seeother('http://simplyi.me/allowed')
