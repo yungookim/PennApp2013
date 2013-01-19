@@ -11,8 +11,7 @@ window.UserModel = Backbone.Model.extend({
 	fetch : function(id, next){
 		console.log(id);
 		$.get('/model/getAll', { id : id }, function(ret){
-			console.log(ret);
-			next();	
+			next(ret);	
 		});	
 	}
 });

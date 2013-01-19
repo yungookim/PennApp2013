@@ -36,7 +36,6 @@ var AppRouter = Backbone.Router.extend({
 	},
 
 	defaultAction : function(){
-		console.log("asdfa");
 	}
 });
 

@@ -10,10 +10,12 @@ exports.getAll = function(req, res){
 		var collection = new mongodb.Collection(client, 'user');
 		var query = {_id: new mongodb.ObjectID(req.query.id)};
 		collection.findOne(query, function(err, ret){
-			console.log("err " + err);
-			console.log("ret " + ret);
+			if (err){
+				throw error;
+				return;
+			}
 			db.close();
-			res.send("asdf");
+			res.send(ret);
 		});
 	});
 }
