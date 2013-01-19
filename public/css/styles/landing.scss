@@ -153,10 +153,3 @@ button{
   text-align:center;
   background-color: $color-background;
 }
-
-.header{
-    background-color: white;
-    @include border-radius($panel-angle $panel-angle 0 0);
-    text-align:center;
-}
-
