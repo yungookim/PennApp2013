@@ -12,6 +12,8 @@ urls = (
 	'/allowed', 'Allowed'
 )
 
+oid = ''
+
 sess = session.DropboxSession(app_key, app_secret, access_type)
 request_token = sess.obtain_request_token()
 
@@ -20,30 +22,50 @@ class Index:
 		print "using", app_key, app_secret, access_type
  			
 		if not sess.is_linked():
-			url = sess.build_authorize_url(request_token, 'http://simplyi.me:3000/allowed')
+			callback='http://simplyi.me:3000/allowed'
+			url = sess.build_authorize_url(request_token, callback)
 			raise web.seeother(url)
 		else:
-			return 'Well... okay...'
+			access_token = sess.obtain_access_token(request_token)
+			allowed_slient = client.DropboxClient(sess)
+			# dropbox account data
+			userdata = allowed_slient.account_info()
+			uid = userdata['uid']
+				
+			# mongo preset
+			connection = Connection()
+			db = connection.simplyime
+			collection = db.user
+
+			# check mongo if there's anything already exists,
+			# if so, then we update.
+			print uid
+			selectall =collection.find_one({"uid": uid})	
+			
+			for key,value in selectall.items():
+				print key,value			
+
+			# if not, then well.			
+
+			#raise web.seeother('http://simplyi.me/allowed')
+
 
 class Allowed:
 	def GET(self):
 		access_token = sess.obtain_access_token(request_token)
-		allowed_client = client.DropboxClient(sess)
-		print access_token.key, access_token.secret
-		
+                allowed_client = client.DropboxClient(sess)
+		#collect dropbox account
+                userdata = allowed_client.account_info()
+                
 		# mongo work here
-		connection = MongoClient()
-		
-		db = connection.simplyime
-		
-		post = allowed_client.account_info()
-		info_datum = db.posts
-		oid = info_datum.insert(post)
-		#new_url = 'http://simplyi.me:3000/allowed?ObjectId=' + str(oid) 
+                connection = Connection()
+                db = connection.simplyime
+		collection = db.user
 
-		#raise web.seeother(new_url)		
-		return oid
-		
+                oid = collection.insert(userdata)
+		print oid
+		#raise web.seeother('http://simplyi.me/allowed?ObjectId=' + str(oid))
+		raise web.seeother('/')
 
 if __name__ == "__main__":
 	app = web.application(urls, globals())

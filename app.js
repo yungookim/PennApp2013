@@ -1,11 +1,13 @@
-var express = require('express');
-var app = express();
-var scss = require("scss");
+var express = require('express')
+  , app = express()
+  , scss = require("scss")
+  , model = require("./model")
+  , control = require("./control");
 
 app.configure(function(){
  	app.use(express.static(__dirname + '/public'));	
 	app.use(express.bodyParser());
-	// app.use(express.methodOverride());
+	app.use(express.methodOverride());
 	app.use(app.router);
 	app.use(express.logger());
 	app.use(express.compress());
@@ -15,10 +17,9 @@ app.configure(function(){
 	});
 });
 
+app.get('/', control.index);
+app.get('/allowed', control.allowed);
 
-app.get('/', function(req, res){
-  res.render('index');
-});
-
+//app.get('/model', model);
 
 app.listen(80);
