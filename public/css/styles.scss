@@ -4,9 +4,10 @@ $color-minor: yellow;
 $color-diminished: lime;
 $color-background: whitesmoke;
 $color-shadow: black;
-$button-angle: 0.125em;
-$panel-angle: 0.375em;
-$tile-angle: 0em;
+
+$tile-angle: 1px;
+$button-angle: 2px;
+$panel-angle: 5px;
 
 /*this is needed because vendor gradients have different angles of origin and directions from the unprefixed standard*/
 $angle-offset: 90deg;
@@ -18,6 +19,12 @@ $angle-offset: 90deg;
   -ms-user-select: none;
 }
 
+@mixin transition($val){
+  -webkit-transition: $val; /* Safari and Chrome */
+  -moz-transition: $val; /* Firefox 4 */
+  -o-transition: $val; /* Opera */
+  transition: $val;
+}
 @mixin border-radius($val){
   -webkit-border-radius: $val;
   -moz-border-radius: $val;
@@ -34,6 +41,14 @@ $angle-offset: 90deg;
   box-shadow: $val;
 }
 
+@mixin highlight-shadow($val, $val){
+  -webkit-box-shadow: $val, $val;
+  -moz-box-shadow: $val, $val;
+  -ms-box-shadow: $val, $val;
+  -o-box-shadow: $val, $val;
+  box-shadow: $val, $val;
+}
+
 @mixin transform-rotate($val){
   -webkit-transform: rotate($val);
   -moz-transform: rotate($val);
@@ -45,19 +60,19 @@ $angle-offset: 90deg;
 
 
 @mixin background-gradient-linear($refcolor){
-  $start-color: lighten($refcolor, 20%);
-  $end-color: darken($refcolor, 20%);
-  background: -webkit-gradient(linear, left top, left bottom, from($start-color), to($end-color));
-  background: -webkit-linear-gradient(top, $start-color, $end-color);
-  background: -moz-linear-gradient(top, $start-color, $end-color);
-  background: -ms-linear-gradient(top, $start-color, $end-color);
-  background: -o-linear-gradient(top, $start-color, $end-color); 
+  $start-color: lighten($refcolor, 30%);
+  $end-color: darken($refcolor, 30%);
+  background: -webkit-gradient(linear, left top, left bottom, from($start-color), to($end-color) 140%);
+  background: -webkit-linear-gradient(top, $start-color, $end-color 140%);
+  background: -moz-linear-gradient(top, $start-color, $end-color 140%);
+  background: -ms-linear-gradient(top, $start-color, $end-color 140%);
+  background: -o-linear-gradient(top, $start-color, $end-color 140%); 
 }
 
 
 @mixin bg-radial-gradient($position, $shape, $refcolor){
   $start-color: lighten($refcolor, 20%);
-  $end-color: darken($refcolor, 20%);
+  $end-color: darken($refcolor, 10%);
   background-image:-webkit-radial-gradient($position, $shape, $color-start, $color-stop);
   background-image:-moz-radial-gradient($position, $shape, $color-start, $color-stop);
   background-image:-ms-radial-gradient($position, $shape, $color-start, $color-stop);
@@ -68,26 +83,75 @@ $angle-offset: 90deg;
 @mixin box-button ($refcolor){
   text-align: center;
   font-weight: 900;
-  text-shadow: darken($refcolor, 50%) 0 1px 0;
-  color: lighten($refcolor, 50%);
-  border: 1px solid darken($refcolor, 5%);
-  -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-  -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-  
+  text-shadow: lighten($refcolor, 30%) 0 1px 0;
+  color: darken($refcolor, 20%);
+  border: 1px solid darken($refcolor, 20%);
+  @include transition(color 0.3s);
+  @include highlight-shadow(rgba(255,255,255,0.2) 0 1px 0, inset rgba(255,255,255,0.2) 0 1px 0);
+
   &:hover{
-    color: lighten($refcolor, 80%);
-    text-shadow: darken($refcolor, 50%) 0 1px 0;
+    color: lighten($refcolor, 50%);
+    text-shadow: darken($refcolor, 30%) 0 1px 0;
   }
 }
 
+//START CODING HERE!!!
 
-body{
-  background-color: $color-background;
+body { 
+  background-color:#222222;
+  background-image:
+    -webkit-radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+    -webkit-radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+    -webkit-radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+    -webkit-radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+  background-image:
+    -moz-radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+    -moz-radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+    -moz-radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+    -moz-radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+  background-image:
+    -ms-radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+    -ms-radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+    -ms-radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+    -ms-radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+  background-image:
+    -o-radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+    -o-radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+    -o-radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+    -o-radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+  background-image:
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+    radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+  background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
+  background-position: 0 0, 40px 60px, 130px 270px, 70px 100px; 
+  font-family: helvetica, serif;
 }
 
 button{
-  @include box-button
+  $thiscolor: $color-major;
+  @include box-button($thiscolor);
+  @include background-gradient-linear($thiscolor);
+  @include border-radius($button-angle);
+  font-size: 16px;
+  padding:10px;
+  cursor:pointer;
+}
+.inner_wrapper{
+  @include box-shadow(5px 5px 5px 0 #111111);
+}
+.header {
+  @include border-radius($panel-angle $panel-angle 0 0);
+}
+
+.footer {
+  @include border-radius(0 0 $panel-angle $panel-angle);
+}
+
+.span12{
+  text-align:center;
+  background-color: $color-background;
 }
 
 .header{
