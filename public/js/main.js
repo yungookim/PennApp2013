@@ -12,7 +12,8 @@ var AppRouter = Backbone.Router.extend({
 
 	routes : {
         "" : "landing",
-        "template1" : "template"
+        "template1" : "template",
+        "sandbox" : "sandbox"
 	},
 
 	el : $("#main"),
@@ -25,6 +26,11 @@ var AppRouter = Backbone.Router.extend({
 	template : function() {
 		var self = this;
 		(new TemplateStyle1()).render();
+	},
+
+	sandbox : function() {
+		var self = this;
+		(new SandBox()).render();
 	}
 });
 
