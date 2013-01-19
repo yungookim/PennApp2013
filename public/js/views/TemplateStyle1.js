@@ -3,6 +3,7 @@ window.TemplateStyle1 = Backbone.View.extend({
 	el : $("#main"),
 
     initialize: function() {
+	console.log("template1");
     },
 
     render: function(eventName) {
