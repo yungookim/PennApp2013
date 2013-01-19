@@ -1,33 +1,38 @@
-"use strict";
+
 
 $(function(){
 	window.Templates = {};
 
-	window.app = new AppRouter();
+	window.app = new AppRouter;
 	Backbone.history.start();
 })
 
 var AppRouter = Backbone.Router.extend({
 
 	routes : {
-    "" : "landing",
-    "a" : "b",
-    "template1" : "template"
+        "" : "landing",
+        "template1" : "template",
+        "sandbox" : "sandbox",
+        "*actions": 'defaultAction'
 	},
-	
+
 	landing : function(){
-		var self = this;
+		console.log("asdf");
 		(new LandingView()).render();
 	},
 
-	b : function(){
-		console.log("test");
-	},
-
 	template : function() {
-		console.log("asdfasdf");
 		var self = this;
 		(new TemplateStyle1()).render();
+	},
+
+	sandbox : function() {
+		var self = this;
+		(new SandBox()).render();
+	},
+
+	defaultAction : function(){
+		console.log("asdfa");
 	}
 });
 
