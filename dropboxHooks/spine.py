@@ -18,13 +18,7 @@ class index:
 	def GET(self):
 		print "using", app_key, app_secret, access_type
 		url = sess.build_authorize_url(request_token)
-		print "url:", url
-		time.sleep(10)
-		raw_input()
-	
-		access_token = sess.obtain_access_token(request_token)
-		client = client.DropboxClient(sess)
-		return "linked account:", client.account_info()
+		raise web.seeother(url)
 		
 
 
