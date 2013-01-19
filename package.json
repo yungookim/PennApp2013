@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "express": "3.x",
-    "scss" : "0.2.4"
+    "scss" : "0.2.4",
+    "mongodb" : "1.2.9"
   }
 }
