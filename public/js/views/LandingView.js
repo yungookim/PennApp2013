@@ -1,10 +1,22 @@
 window.LandingView = Backbone.View.extend({
 
+		$mainDiv : $("#main"),
+
     initialize: function() {
-    	this.template = $("#foo").html();
+
     },
 
     render: function(eventName) {
-    	return this.template;   
+    	var self = this;
+    	self.template = window.Templates.LandingView;
+
+    	if (self.template){
+    		$mainDiv.html(self.template);
+    	} else {
+    		window.loadTemplate('LandingView', function(temp){
+    			self.template = window.Templates.LandingView = temp;
+    			self.$mainDiv.html(self.template);
+    		});
+    	}
     }
 });
