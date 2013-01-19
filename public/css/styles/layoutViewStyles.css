@@ -1,6 +1,6 @@
 /* My CSS */
 body {
-  background: black;
+  background: #dddddd;
   padding-top: 10px;
   font-size: 0.8em;
   font-family: "Tahoma", serif;
@@ -36,5 +36,5 @@ body {
   float: left;
 }
 
-.col { width: 200px; }
-.col2 { width: 400px; }
+.col { width: 180px; }
+.col2 { width: 380px; }
