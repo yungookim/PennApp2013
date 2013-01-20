@@ -1,9 +1,5 @@
 window.LayoutView = Backbone.View.extend({
 
-    // this.model is encapsulates json data
-    // this.model.toJSON()
-    // this.model.fetch(callback)
-
 	el : $("#main"),
 	
 	initialize: function() {
@@ -13,46 +9,48 @@ window.LayoutView = Backbone.View.extend({
     render: function(eventName) {
         console.log("TemplateStyle1");
     	var self = this;
-    	self.template = window.Templates.TemplateStyle1;
-	var m = this.model.toJSON();
-	console.log(m);
 
-    	if (self.template) {
-    		$(this.el).html(Mustache.to_html(self.template, data));
-    	} else {
-		window.loadTemplate('TemplateStyle1', function(temp){
-            self.template = window.Templates.TemplateStyle1 = temp;
-            $(self.el).html(Mustache.to_html(self.template, m));
-            console.log("template loaded");
+    	var m = this.model.toJSON();
 
-            var $container = $('#container');  
-            $container.imagesLoaded( function() {
-                console.log("container being masonried")
-                $container.masonry({
-                    itemSelector: '.img',
-                });         
-            });
+		window.loadTemplate('LayoutView', function(temp){
+            $('#templates').html(temp);
+            $(self.el).html(temp);
+            var tmp = $('#mainTemplate').html();
+            $(self.el).html(Mustache.to_html(tmp, m));            
+            self.loadMedia();
 		});
-    	}
+    },
+
+    loadMedia : function(){
+        var $container = $('#container');  
+        $container.imagesLoaded(function() {
+
+            _.each($(".img img"), function(each){
+                var filePath = $(each).attr("src");
+                var dot = filePath.lastIndexOf(".");
+                var ext = filePath.substring(dot+1, filePath.length);
+                var lastSlash = filePath.lastIndexOf('/')+1;
+                var fileName = filePath.substring(lastSlash, dot);
+                
+                switch (ext) {
+                    case 'png' || 'jpg' || 'jpeg' || 'bmp' :
+                        //as is
+                        break;
+                    case 'mp3' || 'wmp' || 'ogg' || 'm4r':
+                        var template = $('#audio').html();
+                        var data = {
+                            song : fileName,
+                            src : filePath,
+                            type : 'audio/' + ext
+                        };
+                        $(each).parent().html(Mustache.to_html(template, data));
+                        break;
+                }
+            });
+
+            $container.masonry({
+                itemSelector: '.img',
+            });
+        });
     }
 });
-
-var data = {
-            title: "ImageViewer",
-            author: "JAMES CHOI",
-            media: [
-                {"img":true, "src":"img/japan.jpg"},
-                {"img":true, "src":"img/mountain.jpg"},
-                {"img":true, "src":"img/passport.jpg"},
-                {"img":true, "src":"img/ski.jpg"},
-                {"img":true, "src":"img/arrow_countries.jpeg"},
-                {"img":true, "src":"img/boat.jpg"},
-                {"img":true, "src":"img/china.jpg"},
-                {"img":true, "src":"img/hk.jpg"},
-                {"audio":true, "src":"media/gangnam_style.mp3", "type":"audio/mp3", "song":"Gangnam Style by PSY", "imgSrc":"img/gangnam_style_pic.jpg"},
-                {"video":true, "src":"media/officially_missing_you.mp4", "type":"video/mp4", "name":"Officially Missing You, Too by Geeks"},
-                {"text":true, "titleText":"Testing", "message":"There are many factors to consider when determining what to wear. First thing to consider is whether or not the pieces of clothing we have chosen match the overall look. For example, we choose a shirt, jeans, shoes, and maybe accessories like bracelet, hat, and watch. After choosing, we always want to ensure that what we have chosen matches the overall style as we do not want to wear mismatching clothing."},
-            ],
-            about: "Testing About:",
-            aboutMsg: "SO FUCKING COLD IN HERE BIT**!!!!!",
-        };

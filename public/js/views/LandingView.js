@@ -24,6 +24,7 @@ window.LandingView = Backbone.View.extend({
     },
 
     login : function(){
-    	window.location = "http://simplyi.me:3000";
+        // Authenticate through webpy server at port 3000
+    	window.location = "http://localhost:3000";
     }
 });
