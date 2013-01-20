@@ -7,17 +7,16 @@ window.LayoutView = Backbone.View.extend({
 	},
 
     render: function(eventName) {
-        console.log("TemplateStyle1");
     	var self = this;
 
     	var m = this.model.toJSON();
-	window.loadTemplate('LayoutView', function(temp){
+    	window.loadTemplate('LayoutView', function(temp){
             $('#templates').html(temp);
             $(self.el).html(temp);
             var tmp = $('#mainTemplate').html();
             $(self.el).html(Mustache.to_html(tmp, m));            
             self.loadMedia();
-	});
+    	});
     },
 
     loadMedia : function(){
