@@ -5,6 +5,14 @@ $(function(){
 		window.location = "http://simplyi.me";
 	});
 
+	$('.search-query').bind('keydown', function(e) {
+		if(e.keyCode==13){
+			var searchkey = $('.search-query').text();
+			console.log("here");
+			console.log(searchkey);
+		} //else do nothing
+	});
+
 	window.Templates = {};
 	window.userModel;
 	window.app = new AppRouter;
