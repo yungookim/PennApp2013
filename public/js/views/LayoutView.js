@@ -22,9 +22,12 @@ window.LayoutView = Backbone.View.extend({
     },
 
     loadMedia : function(){
-        var $container = $('#container');  
-        $container.imagesLoaded(function() {
+        var $container = $('#container');
 
+        $container.imagesLoaded(function() {
+            $container.masonry({
+                itemSelector: '.img',
+            });
             _.each($(".img img"), function(each){
                 var filePath = $(each).attr("src");
                 var dot = filePath.lastIndexOf(".");
@@ -46,10 +49,6 @@ window.LayoutView = Backbone.View.extend({
                         $(each).parent().html(Mustache.to_html(template, data));
                         break;
                 }
-            });
-
-            $container.masonry({
-                itemSelector: '.img',
             });
         });
     }
