@@ -12,7 +12,7 @@ $(function(){
 			$.post('/findEmail', {email : searchKey}, function(ret){
 				$('#myModalLabel').text(ret.display_name);
 				console.log(ret);
-				$('<div class="modal-body"><p>is using Simplyi Me as well</p><br/><a href="http://simplyi.me/#/'+ret._id+'">Let\'s visit!</a></div>').replaceAll('.modal-body');
+				$('<div class="modal-body"><p>is using Simplyi Me as well</p><br/><a href="http://simplyi.me/#/layout/'+ret._id+'">Let\'s visit!</a></div>').replaceAll('.modal-body');
 				$('#myModal').modal();
 			});			
 		} //else do nothing
