@@ -64,7 +64,7 @@ class Allowed:
 		downloader.start(folder_metadata, allowed_client, userdata, oid)
 		return "oh"
 		
-		#raise web.seeother('http://simplyi.me:3030/authenticated?ObjectID=' + str(oid))		
+		#raise web.seeother('http://simplyi.me/authenticated?ObjectID=' + str(oid))		
 """
 def download_files(folder_metadata, allowed_client,collection,userdata):
 	newfiles=[]
