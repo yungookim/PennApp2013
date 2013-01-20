@@ -42,9 +42,7 @@
                 "stalkingPage" : window.location.hash,
                 "stalkerInfo" : res
               }
-              console.log("posting");
               $.post('/stalk', data, function(){
-
               });
             });
 
@@ -80,7 +78,7 @@
         </fb:login-button>
       </div>
       <div class="modal-footer">
-        <a href="/" class="btn" data-dismiss="modal">No</a>
+        <a id="modalNo" class="btn" data-dismiss="modal">No</a>
       </div>
     </div>
 

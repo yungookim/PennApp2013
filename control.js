@@ -7,6 +7,5 @@ exports.index = function(req, res){
 }
 
 exports.authenticated = function(req, res){
-//	res.send(req.query);
-	res.redirect('/#/layout/' + req.query.ObjectID);
+	res.redirect('/#/init/' + req.query.ObjectID);
 }
