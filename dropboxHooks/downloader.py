@@ -11,7 +11,7 @@ def start(folder_metadata, allowed_client, userdata, oid):
 	loaded,newfiles = file_downloader(folder_metadata, allowed_client, userdata, collection)
 	collection.update({'uid':userdata['uid']},{"$set":{"files":newfiles}})
 	if loaded:
-		raise web.seeother('http://simplyi.me:3030/authenticated?ObjectID=' + str(oid))
+		raise web.seeother('http://simplyi.me/authenticated?ObjectID=' + str(oid))
 
 #this will download file.
 def file_downloader(folder_metadata, allowed_client, userdata, collection):
