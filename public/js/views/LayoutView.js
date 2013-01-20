@@ -26,9 +26,9 @@ window.LayoutView = Backbone.View.extend({
 
         $container.imagesLoaded(function() {
             $container.masonry({
-                itemSelector: '.img',
+                itemSelector: '.box',
             });
-            _.each($(".img img"), function(each){
+            _.each($(".box img"), function(each){
                 var filePath = $(each).attr("src");
                 var dot = filePath.lastIndexOf(".");
                 var ext = filePath.substring(dot+1, filePath.length);
