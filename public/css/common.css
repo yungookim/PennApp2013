@@ -10,3 +10,20 @@
           border-radius: 5px;
 }
 
+.navbar-inner{
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  -ms-border-radius: 0 0 6px 6px;
+  -o-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+}
+
+.brand{
+	line-height: 42px;
+	font-style: none;
+	font-size: 20px;
+	font-family: helvetica, serif;
+	color: white;
+	font-weight: 900;
+	vertical-align: middle;
+}
