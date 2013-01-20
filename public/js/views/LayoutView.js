@@ -24,7 +24,6 @@ window.LayoutView = Backbone.View.extend({
         var $container = $('#imageBox');
 
         $container.imagesLoaded(function() {
-		console.log('loaded');
             $container.masonry({
                 itemSelector: '.box'
             });
