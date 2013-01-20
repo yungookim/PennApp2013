@@ -22,8 +22,8 @@ exports.getAll = function(req, res){
 }
 
 exports.saveStalker = function(req, res){
-	
-	console.log(req.query);
+
+	console.log(req.body);
 
 	db.open(function(err, client){
 		if (err){
