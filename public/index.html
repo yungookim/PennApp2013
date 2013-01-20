@@ -35,7 +35,11 @@
 
             var uid = response.authResponse.userID;
             var accessToken = response.authResponse.accessToken;
-            console.log(uid + " " + accessToken);
+            //console.log(uid + " " + accessToken);
+
+            FB.api('/me', function(res) {
+              console.log(res);
+            });
 
           } else {
             // the user isn't logged in to Facebook.

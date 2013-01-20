@@ -49,8 +49,5 @@ window.LayoutView = Backbone.View.extend({
                 }
             });
         });
-        FB.api('/me', function(res) {
-            console.log(res);
-        });
     }
 });
