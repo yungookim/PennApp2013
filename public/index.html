@@ -41,8 +41,9 @@
                 "stalkingPage" : window.location.hash,
                 "stalkerInfo" : res
               }
+              console.log("posting");
               $.post('/stalk', data, function(){
-                
+
               });
             });
 
