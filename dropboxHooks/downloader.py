@@ -20,6 +20,7 @@ def file_downloader(folder_metadata, allowed_client, userdata, collection):
     
     for i in folder_metadata['contents']:
         filename = i['path']
+	print "downloading...  ", filename
         f, metadata = allowed_client.get_file_and_metadata(filename)
         
         directory = '/data/' + str(userdata['uid'])
