@@ -12,7 +12,7 @@ exports.getAll = function(req, res){
 		var query = {_id: new mongodb.ObjectID(req.query.id)};
 		collection.findOne(query, function(err, ret){
 			if (err){
-				throw error;
+				throw err;
 				return;
 			}
 			db.close();
@@ -34,4 +34,17 @@ exports.saveStalker = function(req, res){
 		});
 	});
 
+}
+
+exports.getStalkers = function(req, res){
+	db.open(function(err, client){
+		if (err){
+			throw err;
+		}
+		var collection = new mongodb.Collection(client, 'stalker');
+		collection.find({ stalkingPage : '#/layout/' + req.body.id}).toArray(function(err, ret){
+			db.close();
+			res.send(ret);
+		});
+	});
 }
