@@ -3,7 +3,6 @@
 	<div id="inner">
 		<div class="page-header" style="padding-left: 100px;">
 			<h1>{{display_name}} <small>from {{country}}</small></h1>
-			<a href="#friendModal" role="button" class="btn" data-toggle="modal" id="stalkerbtn">you friends</a>
 		</div>
 		<div class="container">
 			<div class="row">
@@ -17,14 +16,13 @@
 			</div>
 		</div>
 		<div id="footer" class="well well-small">
-			<h3>Page Viewed By :</h3>
+			<h3>Visitors : </h3>
 		</div>
 	</div>
 </script>
 
 <script type="text/template" id="audio">
 <div style="height:200px;">			
-	<p id="songTitle"><b>Playing : {{song}}</b></p>
 	<audio controls>
 		<source src="{{src}}" type="{{type}}">
 		YOUR BROWSER DOES NOT SUPPORT AUDIO!!
@@ -39,20 +37,9 @@
 
 <script type="text/template" id="stalkers">
 <!-- Bootstrap Modal -->
-    <div id="friendModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Your Friends</h3>
-      </div>
-      <div class="modal-body">
-        {{#data}}
-			<p><a href="{{stalkerInfo.link}}">
+	{{#data}}
+		<p><a href="{{stalkerInfo.link}}">
 			{{stalkerInfo.name}} </a> viewed this page at 
 			<span class="time">{{time}}</span></p>
-		{{/data}}
-      </div>
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      </div>
-    </div>
+	{{/data}}
 <script>

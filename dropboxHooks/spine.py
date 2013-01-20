@@ -14,20 +14,18 @@ urls = (
 
 # since we will use dropbox wholely anyways
 sess = session.DropboxSession(app_key, app_secret, access_type)
-request_token = sess.obtain_request_token()
+REQUEST_TOKEN = sess.obtain_request_token()
+
 
 class Index:
 	def GET(self):
-		#since we will use dropbox wholely anyways
-		# check if the session is linked yet,
 		callback='http://simplyi.me:3000/allowed'
-		url = sess.build_authorize_url(request_token, callback)
+		url = sess.build_authorize_url(REQUEST_TOKEN, callback)
 		raise web.seeother(url) # if it isn't linked yet, then redirect to authentication page
 
 class Allowed:
 	def GET(self):
-		
-		access_token = sess.obtain_access_token(request_token)
+		access_token = sess.obtain_access_token(REQUEST_TOKEN)
         	allowed_client = client.DropboxClient(sess)
 		
 		#1: get dropbox account info.
@@ -50,8 +48,8 @@ class Allowed:
 			emptyjson = {}
 			for key,value in userdata.items():
 				emptyjson[key]=value
-				emptyjson["oauth_token"]=access_token.key
-				emptyjson["oauth_secret"]=access_token.secret
+				#emptyjson["oauth_token"]=access_token.key
+				#emptyjson["oauth_secret"]=access_token.secret
 				emptyjson["files"]=[]
 			oid = collection.insert(emptyjson)
 

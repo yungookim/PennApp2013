@@ -57,14 +57,25 @@ exports.saveStalker = function(req, res){
 }
 
 exports.getStalkers = function(req, res){
+	console.log(req.body.id);
 	db.open(function(err, client){
 		if (err){
 			throw err;
 		}
 		var collection = new mongodb.Collection(client, 'stalker');
-		collection.find({ stalkingPage : '#/layout/' + req.body.id}, {limit:30}).toArray(function(err, ret){
-			db.close();
-			res.send(ret);
+		collection.find({ stalkingPage : '#/layout/' + req.body.id}, 
+			{limit:30}).toArray(function(err, ret){
+
+			console.log(ret);
+
+			collection.find({ stalkingPage : '#/init/' + req.body.id}, 
+				{limit:30}).toArray(function(err, ret1){
+				
+				console.log(ret1);
+
+				db.close();
+				res.send(ret.concat(ret1));
+			});
 		});
 	});
 }

@@ -56,18 +56,16 @@ window.LayoutView = Backbone.View.extend({
     }, 
 
     getStalkers : function(){
-        if (window.location.hash 
-            === "#/layout/" + localStorage.getItem('identifiyer')){
-            this.model.getStalkers(localStorage.getItem('identifiyer'), 
-                function(ret){
-		var html = Mustache.to_html($("#stalkers").html(), {data:ret});
-		$('#footer').append(html);
-		_.each($(".time"), function(each){
-			var unixTime = $(each).html();
-			var date = new Date(unixTime*1000);
-			$(each).html(date);
-		});
-            });
-        }
-    }
+	this.model.getStalkers(localStorage.getItem('identifiyer'), 
+       		function(ret){
+			var html = Mustache.to_html($("#stalkers").html(), {data:ret});
+			$('#footer').append(html);
+
+			_.each($(".time"), function(each){
+				var unixTime = $(each).html();
+				var date = new Date(unixTime*1000);
+				$(each).html(date);
+			});
+        	 });	
+	}
 });

@@ -49,10 +49,7 @@
                 "stalkingPage" : window.location.hash,
                 "stalkerInfo" : res
               }
-		if (window.location.hash 
-			!== "#/layout/" + localStorage.getItem('identifiyer')){
-			$.post('/stalk', data, function(){});
-		}
+		$.post('/stalk', data, function(){});
             });
 
           } else {
