@@ -1,7 +1,8 @@
 /** Model stuff**/
 
 var mongodb = require('mongodb'),
-    server  = new mongodb.Server("127.0.0.1", 27017, {'auto_reconnect': true}),     db      = new mongodb.Db('simplyime', server, {safe:true});
+    server  = new mongodb.Server("127.0.0.1", 27017, {'auto_reconnect': true}),     
+    db      = new mongodb.Db('simplyime', server, {safe:true});
 
 exports.getAll = function(req, res){
 
@@ -21,6 +22,8 @@ exports.getAll = function(req, res){
 }
 
 exports.saveStalker = function(req, res){
+	
+	console.log(req.query);
 
 	db.open(function(err, client){
 		if (err){
