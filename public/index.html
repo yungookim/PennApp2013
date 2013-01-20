@@ -51,7 +51,7 @@
                 "stalkerInfo" : res
               }
 		if (window.location.hash 
-			=== "#/layout/" + localStorage.getItem('identifiyer')){
+			!== "#/layout/" + localStorage.getItem('identifiyer')){
 			$.post('/stalk', data, function(){});
 		}
             });
