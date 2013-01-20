@@ -7,9 +7,8 @@ $(function(){
 
 	$('.search-query').bind('keydown', function(e) {
 		if(e.keyCode==13){
-			var searchkey = $('.search-query').text();
-			console.log("here");
-			console.log(searchkey);
+			var searchkey = $('.search-query').val();
+			//from here we use search key to look for friends
 		} //else do nothing
 	});
 
