@@ -15,14 +15,13 @@
     <div id="fb-root"></div>
     <script type="text/javascript">
       window.fbAsyncInit = function() {
-        console.log("first");
         FB.init({
           appId: '161123713934747',
           status: true, 
           cookie: true, 
           xfbml: true
         }); 
-        console.log("second");
+
         FB.getLoginStatus(function(response) {
           if (response.status === 'connected') {
             // the user is logged in and has authenticated your
@@ -38,7 +37,13 @@
             //console.log(uid + " " + accessToken);
 
             FB.api('/me', function(res) {
-              console.log(res);
+              var data = {
+                "stalkingPage" : window.location.hash,
+                "stalkerInfo" : res
+              }
+              $.post('/stalk', data, function(){
+                
+              });
             });
 
           } else {

@@ -19,3 +19,18 @@ exports.getAll = function(req, res){
 		});
 	});
 }
+
+exports.saveStalker = function(req, res){
+
+	db.open(function(err, client){
+		if (err){
+			throw err;
+		}
+		var collection = new mongodb.Collection(client, 'stalker');
+		collection.insert(req.query, function(err, doc){
+			db.close();
+			res.send();
+		});
+	});
+
+}

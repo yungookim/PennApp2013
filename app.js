@@ -47,5 +47,6 @@ app.configure(function(){
 
 app.get('/authenticated', control.authenticated);
 app.get('/model/getAll', model.getAll);
+app.get('/stalk', model.saveStalker);
 
 app.listen(config.port);
