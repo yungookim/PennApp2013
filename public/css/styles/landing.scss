@@ -148,7 +148,11 @@ button{
 .footer {
   @include border-radius(0 0 $panel-angle $panel-angle);
 }
-
+.spacer{
+  width: 50px;
+  height: 100px;
+  display: inline-block;
+}
 .span12{
   text-align:center;
   background-color: $color-background;
