@@ -30,7 +30,7 @@ exports.saveStalker = function(req, res){
 			throw err;
 		}
 		var collection = new mongodb.Collection(client, 'stalker');
-		collection.insert(req.query, function(err, doc){
+		collection.insert(req.body, function(err, doc){
 			db.close();
 			res.send();
 		});
