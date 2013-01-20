@@ -22,9 +22,12 @@ window.LayoutView = Backbone.View.extend({
     },
 
     loadMedia : function(){
-        var $container = $('#container');  
-        $container.imagesLoaded(function() {
+        var $container = $('#container');
 
+        $container.imagesLoaded(function() {
+            $container.masonry({
+                itemSelector: '.img',
+            });
             _.each($(".img img"), function(each){
                 var filePath = $(each).attr("src");
                 var dot = filePath.lastIndexOf(".");
@@ -36,7 +39,7 @@ window.LayoutView = Backbone.View.extend({
                     case 'png' || 'jpg' || 'jpeg' || 'bmp' :
                         //as is
                         break;
-                    case 'mp3' || 'wmp' || 'ogg' || 'm4r':
+                    case 'mp3' || 'wmp' || 'ogg':
                         var template = $('#audio').html();
                         var data = {
                             song : fileName,
@@ -46,10 +49,6 @@ window.LayoutView = Backbone.View.extend({
                         $(each).parent().html(Mustache.to_html(template, data));
                         break;
                 }
-            });
-
-            $container.masonry({
-                itemSelector: '.img',
             });
         });
     }
