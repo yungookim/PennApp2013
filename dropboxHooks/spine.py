@@ -4,6 +4,8 @@ import time, oauth
 from pymongo import Connection, MongoClient
 import os
 
+import downloader
+
 # key, secret, access_type
 app_key = '6tqpoonhurv29mz'
 app_secret = 'gepizvnxzc0brtn'
@@ -11,9 +13,7 @@ access_type = 'app_folder'
 # urls for internal use
 urls = (
 	'/', 'Index',
-	'/allowed', 'Allowed',
-	'/loading', 'Loading'
-)
+	'/allowed', 'Allowed')
 
 # since we will use dropbox wholely anyways
 sess = session.DropboxSession(app_key, app_secret, access_type)
@@ -61,24 +61,11 @@ class Allowed:
 		#3: get the metadata.
 		folder_metadata = allowed_client.metadata('/')
 		
-		loaded = False
-		while not loaded:
-			loaded, newfiles = download_files(folder_metadata, allowed_client, collection, userdata)
-			print loaded			
+		downloader.start(folder_metadata, allowed_client, userdata, oid)
+		return "oh"
 		
-		collection.update({'uid':userdata['uid']},{"$set":{"files":newfiles}})
-
-		raise web.seeother('http://simplyi.me:3030/authenticated?ObjectID=' + str(oid))
-		#raise web.seeother('http://simplyi.me:3000/loading')
+		#raise web.seeother('http://simplyi.me:3030/authenticated?ObjectID=' + str(oid))		
 """
-class Loading:
-	def GET(self):
-		#'/loading'
-		return "Loading......"
-
-"""
-
-
 def download_files(folder_metadata, allowed_client,collection,userdata):
 	newfiles=[]
 	counter = 0
@@ -102,7 +89,9 @@ def download_files(folder_metadata, allowed_client,collection,userdata):
                 counter +=1
 
 	return True,newfiles
+"""
 
 if __name__ == "__main__":
 	app = web.application(urls, globals())
 	app.run()
+

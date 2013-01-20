@@ -6,7 +6,7 @@
 		</div>
 		<div class="container">
 			<div class="row">
-				<div id="span12" style="height:100%;">
+				<div id="imageBox">
 					{{#files}}
 							<div class="box col2">
 								<img src="{{dir}}"/>
@@ -22,11 +22,13 @@
 </script>
 
 <script type="text/template" id="audio">
-			<p id="songTitle"><b>Playing : {{song}}</b></p>
-			<audio controls>
-				<source src="{{src}}" type="{{type}}">
-				YOUR BROWSER DOES NOT SUPPORT AUDIO!!
-			</audio>
+<div style="height:200px;">			
+	<p id="songTitle"><b>Playing : {{song}}</b></p>
+	<audio controls>
+		<source src="{{src}}" type="{{type}}">
+		YOUR BROWSER DOES NOT SUPPORT AUDIO!!
+	</audio>
+</div>
 </script>
 
 <script type="text/template" id="text">
