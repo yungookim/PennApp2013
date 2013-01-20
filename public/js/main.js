@@ -9,6 +9,7 @@ $(function(){
 		if(e.keyCode==13){
 			var searchkey = $('.search-query').val();
 			//from here we use search key to look for friends
+			
 		} //else do nothing
 	});
 
