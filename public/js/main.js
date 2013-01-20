@@ -10,7 +10,9 @@ $(function(){
 			var searchKey = $('.search-query').val();
 			//from here we use search key to look for friends
 			$.post('/findEmail', {email : searchKey}, function(ret){
-				console.log(ret);
+				$('#myModalLabel').text(ret.display_name);
+				$('<div class="modal-body"><p>is using Simplyi Me as well</p><br/><a href="http://simplyi.me/#/'+ret._id+'">Let\'s visit!</a></div>').append('.modal-body');
+				$('#myModal').modal();
 			});			
 		} //else do nothing
 	});
