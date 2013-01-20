@@ -52,10 +52,10 @@
                 "stalkingPage" : window.location.hash,
                 "stalkerInfo" : res
               }
-              console.log("posting");
-              $.post('/stalk', data, function(){
-
-              });
+		if (window.location.hash 
+			=== "#/layout/" + localStorage.getItem('identifiyer')){
+			$.post('/stalk', data, function(){});
+		}
             });
 
           } else {

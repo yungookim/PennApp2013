@@ -57,8 +57,8 @@ window.LayoutView = Backbone.View.extend({
             === "#/layout/" + localStorage.getItem('identifiyer')){
             this.model.getStalkers(localStorage.getItem('identifiyer'), 
                 function(ret){
-                    
-                    
+		var html = Mustache.to_html($("#stalkers").html(), {data:ret});
+		console.log(html);
             });
         }
     }
