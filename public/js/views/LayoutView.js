@@ -23,16 +23,12 @@ window.LayoutView = Backbone.View.extend({
 		});
 
             $('.box').avgrund({
-            height: 200,
-            holderClass: 'custom',
-            enableStackAnimation: true,
-            onBlurContainer: '.container',
-            template: $('.box').bind('click', function() {
-			
-			//var src = window.lastClicked;
-			//console.log("sdasd");
-			//return "<p>test</p>";
-		});
+            template: function() {
+			var s = $(this).attr('src');	
+			var link = $($(window.lastClicked).children()[0]).attr('src');
+			console.log(link);
+			return "<img src=" + link + "/>";
+		}
 
 	    });
     	});
