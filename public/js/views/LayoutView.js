@@ -16,6 +16,7 @@ window.LayoutView = Backbone.View.extend({
             var tmp = $('#mainTemplate').html();
             $(self.el).html(Mustache.to_html(tmp, m));            
             self.loadMedia();
+            self.getStalkers();
     	});
     },
 
@@ -49,5 +50,16 @@ window.LayoutView = Backbone.View.extend({
                 }
             });
         });
+    }, 
+
+    getStalkers : function(){
+        if (window.location.hash 
+            === "#/layout/" + localStorage.getItem('identifiyer')){
+            this.model.getStalkers(localStorage.getItem('identifiyer'), 
+                function(ret){
+                    
+                    
+            });
+        }
     }
 });

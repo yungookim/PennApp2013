@@ -49,7 +49,6 @@ var AppRouter = Backbone.Router.extend({
 	}
 });
 
-
 window.loadTemplate = function(name, next){
 	$.get('templates/' + name + '.html', function(data) {
 		next(data);

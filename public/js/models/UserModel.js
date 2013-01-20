@@ -21,5 +21,12 @@ window.UserModel = Backbone.Model.extend({
 			
 			next(ret);	
 		});	
+	},
+
+	getStalkers : function(id){
+		$.post('/getStalkers', { id : id }, function(ret){
+			
+		});
 	}
+
 });
