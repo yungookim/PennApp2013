@@ -25,8 +25,6 @@ window.LayoutView = Backbone.View.extend({
             $('.box').avgrund({
             height: 200,
             holderClass: 'custom',
-            showClose: true,
-            showCloseText: 'Close',
             enableStackAnimation: true,
             onBlurContainer: '.container',
             template: $('.box').bind('click', function() {
