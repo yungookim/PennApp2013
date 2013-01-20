@@ -22,7 +22,7 @@ window.LayoutView = Backbone.View.extend({
     },
 
     loadMedia : function(){
-        var $container = $('#container');
+        var $container = $('.container');
 
         $container.imagesLoaded(function() {
             $container.masonry({
