@@ -1,5 +1,6 @@
 .wraphics{
   display: inline-block;
+  vertical-align: middle;
   .plus_sign{
     position: relative;
     :first-child{
@@ -8,7 +9,7 @@
       height: 100%;
       margin-top: 0;
       margin-left: 35%;
-      background-color: black;
+      background-color: darkgray;
     }
     :last-child{
       position: absolute;
@@ -16,7 +17,7 @@
       width: 100%;
       margin-left: 0;
       margin-top: 35%;
-      background-color: black;
+      background-color: darkgray;
     }
   } 
   .equal_sign{
@@ -27,7 +28,7 @@
       width: 100%;
       margin-left: 0;
       margin-top: 15%;
-      background-color: black;
+      background-color: darkgray;
     }
     :last-child{
       position: absolute;
@@ -35,7 +36,7 @@
       width: 100%;
       margin-left: 0;
       margin-top: 60%;
-      background-color: black;
+      background-color: darkgray;
     }
   }
 }
