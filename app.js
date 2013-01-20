@@ -45,14 +45,6 @@ app.configure(function(){
 	});
 });
 
-app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
-
-app.configure('production', function(){
-  app.use(express.errorHandler());
-});
-
 app.get('/authenticated', control.authenticated);
 app.get('/model/getAll', model.getAll);
 
