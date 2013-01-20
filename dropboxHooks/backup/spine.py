@@ -11,8 +11,7 @@ access_type = 'app_folder'
 # urls for internal use
 urls = (
 	'/', 'Index',
-	'/allowed', 'Allowed',
-	'/loading', 'Loading'
+	'/allowed', 'Allowed'
 )
 
 # since we will use dropbox wholely anyways
@@ -60,24 +59,10 @@ class Allowed:
 
 		#3: get the metadata.
 		folder_metadata = allowed_client.metadata('/')
-		
-		loaded = False
-		while not loaded:
-			loaded, newfiles = download_files(folder_metadata, allowed_client, collection, userdata)
-			print loaded			
-		
+		newfiles = download_files(folder_metadata, allowed_client, collection, userdata)
 		collection.update({'uid':userdata['uid']},{"$set":{"files":newfiles}})
 
 		raise web.seeother('http://simplyi.me:3030/authenticated?ObjectID=' + str(oid))
-		#raise web.seeother('http://simplyi.me:3000/loading')
-"""
-class Loading:
-	def GET(self):
-		#'/loading'
-		return "Loading......"
-
-"""
-
 
 def download_files(folder_metadata, allowed_client,collection,userdata):
 	newfiles=[]
@@ -101,7 +86,7 @@ def download_files(folder_metadata, allowed_client,collection,userdata):
                 newfiles.append({"uuid":newkey,"dir": filedir})
                 counter +=1
 
-	return True,newfiles
+	return newfiles
 
 if __name__ == "__main__":
 	app = web.application(urls, globals())

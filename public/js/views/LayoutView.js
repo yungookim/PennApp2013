@@ -11,22 +11,21 @@ window.LayoutView = Backbone.View.extend({
     	var self = this;
 
     	var m = this.model.toJSON();
-
-		window.loadTemplate('LayoutView', function(temp){
+	window.loadTemplate('LayoutView', function(temp){
             $('#templates').html(temp);
             $(self.el).html(temp);
             var tmp = $('#mainTemplate').html();
             $(self.el).html(Mustache.to_html(tmp, m));            
             self.loadMedia();
-		});
+	});
     },
 
     loadMedia : function(){
-        var $container = $('.container');
+        var $container = $('#imageBox');
 
         $container.imagesLoaded(function() {
             $container.masonry({
-                itemSelector: '.box',
+                itemSelector: '.box'
             });
             _.each($(".box img"), function(each){
                 var filePath = $(each).attr("src");
