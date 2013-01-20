@@ -11,7 +11,8 @@ access_type = 'app_folder'
 # urls for internal use
 urls = (
 	'/', 'Index',
-	'/allowed', 'Allowed'
+	'/allowed', 'Allowed',
+	'/loading', 'Loading'
 )
 
 # since we will use dropbox wholely anyways
@@ -63,10 +64,20 @@ class Allowed:
 		loaded = False
 		while not loaded:
 			loaded, newfiles = download_files(folder_metadata, allowed_client, collection, userdata)
+			print loaded			
 		
 		collection.update({'uid':userdata['uid']},{"$set":{"files":newfiles}})
 
 		raise web.seeother('http://simplyi.me:3030/authenticated?ObjectID=' + str(oid))
+		#raise web.seeother('http://simplyi.me:3000/loading')
+"""
+class Loading:
+	def GET(self):
+		#'/loading'
+		return "Loading......"
+
+"""
+
 
 def download_files(folder_metadata, allowed_client,collection,userdata):
 	newfiles=[]
