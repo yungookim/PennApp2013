@@ -3,6 +3,7 @@
 	<div id="inner">
 		<div class="page-header" style="padding-left: 100px;">
 			<h1>{{display_name}} <small>from {{country}}</small></h1>
+			<a href="#myModal" role="button" class="btn" data-toggle="modal">you friends</a>
 		</div>
 		<div class="container">
 			<div class="row">
@@ -37,9 +38,22 @@
 </script>
 
 <script type="text/template" id="stalkers">
-{{#data}}
+<!-- Bootstrap Modal -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Your Friends</h3>
+      </div>
+      <div class="modal-body">
+        {{#data}}
 	<p><a href="{{stalkerInfo.link}}">
 	{{stalkerInfo.name}} </a> viewed this page at 
 		<span class="time">{{time}}</span></p>
 {{/data}}
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+
 <script>
