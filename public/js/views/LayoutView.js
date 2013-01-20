@@ -17,6 +17,9 @@ window.LayoutView = Backbone.View.extend({
             $(self.el).html(Mustache.to_html(tmp, m));            
             self.loadMedia();
             self.getStalkers();
+            $(".masonry-brick").click(function(e) {
+                console.log(this);
+            });
     	});
     },
 
