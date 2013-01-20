@@ -28,6 +28,9 @@ exports.saveStalker = function(req, res){
 			throw err;
 		}
 		var collection = new mongodb.Collection(client, 'stalker');
+		var date = new Date();
+		var ts = String(Math.round(date.getTime() / 1000) + date.getTimezoneOffset() * 60);
+		req.body.time = ts;
 		collection.insert(req.body, function(err, doc){
 			db.close();
 			res.send();
@@ -42,7 +45,7 @@ exports.getStalkers = function(req, res){
 			throw err;
 		}
 		var collection = new mongodb.Collection(client, 'stalker');
-		collection.find({ stalkingPage : '#/layout/' + req.body.id}).toArray(function(err, ret){
+		collection.find({ stalkingPage : '#/layout/' + req.body.id}, {limit:30}).toArray(function(err, ret){
 			db.close();
 			res.send(ret);
 		});

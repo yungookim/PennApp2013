@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		<div id="footer" class="well well-small">
-			<p><b>{{about}}</b> <br>{{aboutMsg}}</p> 
+			<h3>Page Viewed By :</h3>
 		</div>
 	</div>
 </script>
@@ -38,6 +38,8 @@
 
 <script type="text/template" id="stalkers">
 {{#data}}
-	<a href="{{stalkerInfo.link}}">Name : {{stalkerInfo.name}}</a>
+	<p><a href="{{stalkerInfo.link}}">
+	{{stalkerInfo.name}} </a> viewed this page at 
+		<span class="time">{{time}}</span></p>
 {{/data}}
 <script>

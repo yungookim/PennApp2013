@@ -58,7 +58,12 @@ window.LayoutView = Backbone.View.extend({
             this.model.getStalkers(localStorage.getItem('identifiyer'), 
                 function(ret){
 		var html = Mustache.to_html($("#stalkers").html(), {data:ret});
-		console.log(html);
+		$('#footer').append(html);
+		_.each($(".time"), function(each){
+			var unixTime = $(each).html();
+			var date = new Date(unixTime*1000);
+			$(each).html(date);
+		});
             });
         }
     }
