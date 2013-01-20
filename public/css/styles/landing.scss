@@ -144,17 +144,13 @@ button{
     margin: 30px;
     color: white;
 }
-.inner_wrapper{
-  @include box-shadow(5px 5px 5px 0 #111111);
-}
+
 .header {
   @include border-radius($panel-angle $panel-angle 0 0);
-  height:500px;
 }
 
 .footer {
-  @include border-radius(0 0 $panel-angle $panel-angle);
-  
+  color: gray;
 }
 .spacer{
   width: 50px;
@@ -163,5 +159,4 @@ button{
 }
 .span12{
   text-align:center;
-  background-color: $color-background;
 }
