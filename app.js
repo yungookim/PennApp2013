@@ -49,5 +49,6 @@ app.get('/authenticated', control.authenticated);
 app.get('/model/getAll', model.getAll);
 app.post('/stalk', model.saveStalker);
 app.post('/getStalkers', model.getStalkers);
+app.post('/findEmail', model.findEmail);
 
 app.listen(config.port);

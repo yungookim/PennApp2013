@@ -7,9 +7,11 @@ $(function(){
 
 	$('.search-query').bind('keydown', function(e) {
 		if(e.keyCode==13){
-			var searchkey = $('.search-query').val();
+			var searchKey = $('.search-query').val();
 			//from here we use search key to look for friends
-			
+			$.post('/findEmail', {email : searchKey}, function(ret){
+				console.log(ret);
+			});			
 		} //else do nothing
 	});
 

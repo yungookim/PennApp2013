@@ -21,6 +21,23 @@ exports.getAll = function(req, res){
 	});
 }
 
+exports.findEmail = function(req, res){
+	db.open(function(err, client){
+		if (err) throw err;
+
+		var collection = new mongodb.Collection(client, 'user');
+		var query = {email : req.body.email};
+		collection.findOne(query, function(err, ret){
+			if (err) throw err;
+			
+			db.close();
+			res.send(ret);
+		});
+
+	});
+
+}
+
 exports.saveStalker = function(req, res){
 
 	db.open(function(err, client){
