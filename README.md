@@ -48,6 +48,6 @@ Tools used for this project:
 Collaborators
 -------------
 * [Dave Yungoo Kim](https://github.com/yungookim)
-* Somang Nam
+* [Somang Nam](https://github.com/kikokikok)
 * [Wilson Wong](https://github.com/wilsonwong)
 * [James Choi](https://github.com/choiboi)
