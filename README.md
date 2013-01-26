@@ -3,7 +3,7 @@ PennApp2013
 
 Introduction
 ------------
-A Hahckthon project created during PennApp2013, Winter.
+A Hackathon project created during PennApp2013, Winter.
 
 The project was aimed for non-technical people looking for hosting needs for their media contents such as images, 
 videos, and audios. 
